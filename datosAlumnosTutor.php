@@ -121,10 +121,9 @@ if (empty($_SESSION['id'])) {
 				echo "<td>{$row['nombre']}</td>";
 				echo "<td>{$row['cv_file']}</td>";
 				echo "<td>
-           				<form action='eliminarAlumno.php' method='POST'>
-            				<input type='hidden' name='email_borrar' value='{$row["email"]}'>
+           				<form action='datosAlumnosTutor.php' method='post'>
+            				<input type='hidden' name='nia' value='{$row["nia"]}'>
             				<input type='submit' name='eliminar' id='eliminar' value='Eliminar'>
-
            				</form>
           			</td>";
     			echo "<td>
@@ -160,7 +159,26 @@ if (empty($_SESSION['id'])) {
 		catch(PDOException $e){
 			echo "Error en la conexion con la base de datos" .$e->getMessage();
 		}
-	?>
+
+		
+
+		try{
+			if (isset($_POST["eliminar"])){
+
+				$sql="DELETE FROM alumno where nia=:nia";
+				
+				$stmt = $pdo->prepare($sql);
+				$stmt->bindParam(':nia', $nia);
+				$stmt->execute();
+				
+				echo "Alumno con $nia eliminado";
+			}
+		}catch(PDOException $e){
+		echo $e->getMessage();
+		}
+
+?>
+
 
 	<a href="insertAlumno.php">Crear nuevo Alumno</a>
 </body>

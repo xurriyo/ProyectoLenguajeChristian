@@ -10,11 +10,12 @@ try{
     include("conexion.php");
 
     $datos=[];
-    $sql="DELETE FROM alumno where email='$email'";
+    $sql="DELETE FROM alumno where email=:email";
     
+    $datos[":email"]=$email;
     $stmt=$pdo->prepare($sql);
     $stmt->execute($datos);
-    header("location: datosAlumnosTutor.php");
+    
 
 }catch(PDOException $e){
  echo $e->getMessage();
