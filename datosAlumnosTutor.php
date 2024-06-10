@@ -17,6 +17,9 @@ if (empty($_SESSION['id'])) {
 		$anterior = $_POST['anterior'] ?? null;
 		$primera = $_POST['primera'] ?? null;
 		$ultima = $_POST['ultima'] ?? null;
+		$modo_edicion = $_POST['modo_edicion'] ?? null;
+
+		
 ?>
 
 <!DOCTYPE html>
@@ -127,9 +130,13 @@ if (empty($_SESSION['id'])) {
            				</form>
           			</td>";
     			echo "<td>
-            			<form action='editarAlumno.php' method='POST'>
-            				<input type='hidden' name='email_editar' value='{$row["email"]}'>
-            				<input type='submit' name='Editar' value='Editar'>
+            			<form action='insertmodif.php' method='POST'>
+            				<input type='hidden' name='email' value='{$row["email"]}'>
+							<input type='hidden' name='nia' value='{$row["nia"]}'>
+							<input type='hidden' name='telefono' value='{$row["telefono"]}'>
+							<input type='hidden' name='nombre' value='{$row["nombre"]}'>
+							<input type='hidden' name='cv_file' value='{$row["cv_file"]}'>
+            				<input type='submit' name='editar' value='Editar'>
             			</form>
             		</td>";
 				echo "</tr>";
@@ -178,8 +185,6 @@ if (empty($_SESSION['id'])) {
 		}
 
 ?>
-
-
-	<a href="insertAlumno.php">Crear nuevo Alumno</a>
+	<a href="insertmodif.php">Crear nuevo Alumno</a>
 </body>
 </html>

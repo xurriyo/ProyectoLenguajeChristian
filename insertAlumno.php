@@ -13,6 +13,8 @@ $nombre = $_POST["nombre"] ?? null;
 $cv_file=$_POST["cv_file"] ?? null;
 $password=$_POST["password"] ?? null;
 
+
+
 if($_POST){
 
    include ("conexion.php");
@@ -53,7 +55,7 @@ if($_POST){
     <h1>Formulario de registro de Alumno</h1>
 
     <fieldset>
-        <form action="insertAlumno.php" method="post">
+        <form action="datosAlumnoTutor.php" method="post">
         <label>Email </label>
         <input type="text" name="email" required>
         <label>Nia</label>
